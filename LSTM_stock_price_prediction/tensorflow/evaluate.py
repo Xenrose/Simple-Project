@@ -47,7 +47,7 @@ def visualize(data, y_pred, y_test, file_name = False):
     plt.legend()
 
     if file_name:
-        plt.savefig(f"{file_name}.png")
+        plt.savefig(f"../figure/{file_name}.png")
 
     plt.show()
     
@@ -81,7 +81,7 @@ def zoom_visualize(data, y_pred, y_test, file_name = False):
     plt.legend()
 
     if file_name:
-        plt.savefig(f"{file_name}_zoom.png")
+        plt.savefig(f"../figure/{file_name}_zoom.png")
 
     plt.show()
 

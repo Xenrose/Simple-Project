@@ -6,7 +6,9 @@ from tensorflow.keras.optimizers import Adam
 
 from evaluate import loss_compare
 
+import tensorflow as tf
 
+tf.random.set_seed(1111)
 
 
 
