@@ -17,11 +17,11 @@ def stock_preprocessing(stock_data, split_date='2023-08-01', window_size=7, futu
     train_scaled = pd.DataFrame(train_scaled, columns=train.columns)
     test_scaled = pd.DataFrame(test_scaled, columns=test.columns)
 
-
-    X_train = train_scaled.to_numpy()
+    
+    X_train = train_scaled.drop(columns=['Close', 'Adj Close']).to_numpy()
     y_train = train_scaled['Close'].to_numpy()
 
-    X_test = test_scaled.to_numpy()
+    X_test = test_scaled.drop(columns=['Close', 'Adj Close']).to_numpy()
     y_test = test_scaled['Close'].to_numpy()
     
 
