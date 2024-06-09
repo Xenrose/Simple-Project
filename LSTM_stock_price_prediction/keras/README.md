@@ -13,5 +13,3 @@
   * visualize (Train-loss & Valid-loss, Prediction & Real data)  
   * evaluate_report(MSE, MAPE)  
 * `preprocessing.py`: data preprocessing function  
-* `noise_preprocessing.ipynb`: google_news_crawling.csv file Sentence analysis(vetorize) with BERT  
-* `naive_bayes.ipynb`: Noise data study with Naive bayes model and Logistic regression  
