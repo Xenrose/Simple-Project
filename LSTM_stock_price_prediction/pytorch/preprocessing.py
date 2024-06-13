@@ -3,96 +3,74 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
+import torch
+from torch.utils.data import Dataset
+
+class StockData(Dataset):
+    def __init__(self, 
+                 mode:str,
+                 device,
+                 data_path_stock:str = "../data/AAPL.csv",
+                 data_path_index_1:str = '../data/SP500.csv',
+                 data_path_index_2:str = '../data/NASDAQ.csv',
+                 data_path_index_3:str = '../data/DOLLAR.csv',
+                 split_date:str = '2023-08-01',
+                 window_size:int = 7,
+                 future_step:int = 1,
+                 valid_size:float = 0.2) -> None:
+        super().__init__()
+        self.device = device
+        stock = pd.read_csv(data_path_stock)
+        SP500 = pd.read_csv(data_path_index_1)
+        NASDAQ = pd.read_csv(data_path_index_2).drop(columns=['Date'])
+        DOLLAR = pd.read_csv(data_path_index_3).drop(columns=['Date'])
+        index = pd.concat([SP500, NASDAQ, DOLLAR], axis=1)
 
 
-def stock_preprocessing(stock_data, split_date='2023-08-01', window_size=7, future_step=1):
-    train = stock_data[stock_data['Date'] < split_date].drop(['Date'], axis=1)
-    test = stock_data[stock_data['Date'] >= split_date].drop(['Date'], axis=1)
+        if mode=="train" or mode=="valid":
+            start = 0 if mode=="train" else int(len(stock)*(1-valid_size))
+            end = int(len(stock)*(1-valid_size)) if mode=="train" else len(stock)
+        
+            stock = stock[stock['Date'] < split_date][start:end]
+            index = index[index['Date'] < split_date][start:end]
+
+            X_stock = stock.drop(columns=['Date', 'Close'])
+            X_index = index.drop(columns=['Date'])
+            y = stock['Close']
 
 
-    scaler = StandardScaler()
-    train_scaled = scaler.fit_transform(train)
-    test_scaled = scaler.transform(test)    
+        elif mode=="test":
+            stock = stock[stock['Date'] >= split_date]
+            index = index[index['Date'] >= split_date]
+
+            X_stock = stock.drop(columns=['Date', 'Close'])
+            X_index = index.drop(columns=['Date'])
+            y = stock['Close']
+
+
+        X_stock_seq, X_index_seq, y_seq = [], [], []
+        _size = len(X_stock)
+
+        for i in range(window_size, _size-future_step +1):
+            X_stock_seq.append(X_stock[i - window_size:i])
+            X_index_seq.append(X_index[i - window_size:i])
+            y_seq.append(y[i + future_step - 1:i + future_step])
+
+        self.X_stock = np.array(X_stock_seq)
+        self.X_index = np.array(X_index_seq)
+        self.y = np.array(y_seq)
+
+
+    def __getitem__(self, idx) -> torch.Tensor:
+        return torch.Tensor(self.X_stock[idx]).to(self.device), \
+               torch.Tensor(self.X_index[idx]).to(self.device), \
+               torch.Tensor(self.y[idx]).to(self.device)
+
+
+    def __len__(self):
+        return len(self.X_stock)
     
-    train_scaled = pd.DataFrame(train_scaled, columns=train.columns)
-    test_scaled = pd.DataFrame(test_scaled, columns=test.columns)
-
-
-    X_train = train_scaled.to_numpy()
-    y_train = train_scaled['Close'].to_numpy()
-
-    X_test = test_scaled.to_numpy()
-    y_test = test_scaled['Close'].to_numpy()
-    
-
-
-    X_seq_train, y_seq_train = [], []
-    X_seq_test, y_seq_test = [], []
-
-    train_size = len(train)
-    test_size = len(test)
-
-    for i in range(window_size, train_size-future_step +1):
-        X_seq_train.append(X_train[i - window_size:i])
-        y_seq_train.append(y_train[i + future_step - 1:i + future_step])
-
-    for i in range(window_size, test_size-future_step +1):
-        X_seq_test.append(X_test[i - window_size:i])
-        y_seq_test.append(y_test[i + future_step - 1:i + future_step])
-
-
-    return np.array(X_seq_train), np.array(y_seq_train), np.array(X_seq_test), np.array(y_seq_test), scaler
     
 
 
 
-def preprocessing_index_noise(data, data_type, split_date='2023-08-01', window_size=7, future_step=1):
-    train = data[data['Date'] < split_date].drop(['Date'], axis=1)
-    test = data[data['Date'] >= split_date].drop(['Date'], axis=1)
-
-    train_size = len(train)
-    test_size = len(test)
-
-
-    if data_type == 'index':
-        scaler = StandardScaler()
-        train = scaler.fit_transform(train)
-        test = scaler.transform(test)
-
-
-    X_seq_train, X_seq_test = [], []
-
-
-    for i in range(window_size, train_size-future_step +1):
-        X_seq_train.append(train[i - window_size:i])
-
-    for i in range(window_size, test_size-future_step +1):
-        X_seq_test.append(test[i - window_size:i])   
-
-
-    return np.array(X_seq_train), np.array(X_seq_test)
-
-
-
-def unpack_scaled(y_pred, y_test, scaler):
-    # generate array filled with means for prediction
-    mean_values_pred = np.repeat(scaler.mean_[np.newaxis, :], y_pred.shape[0], axis=0)
-
-    # substitute predictions into the first column
-    mean_values_pred[:, 0] = np.squeeze(y_pred)
-
-    # inverse transform
-    y_pred = scaler.inverse_transform(mean_values_pred)[:,0]
-    # print(y_pred.shape)
-
-    # generate array filled with means for testY
-    mean_values_testY = np.repeat(scaler.mean_[np.newaxis, :], y_test.shape[0], axis=0)
-
-    # substitute testY into the first column
-    mean_values_testY[:, 0] = np.squeeze(y_test)
-
-    # inverse transform
-    y_test = scaler.inverse_transform(mean_values_testY)[:,0]
-    # print(testY_original.shape)
-    
-    return y_pred, y_test
