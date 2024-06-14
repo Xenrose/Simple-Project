@@ -1,0 +1,146 @@
+{
+    "objects": [
+        {
+            "id": 1,
+            "clsss": "dog",
+            "confidence": 0.9503378868103027,
+            "bbox": [
+                686.8993530273438,
+                78.04525756835938,
+                849.3631591796875,
+                435.3749084472656
+            ]
+        },
+        {
+            "id": 2,
+            "clsss": "dog",
+            "confidence": 0.9456019401550293,
+            "bbox": [
+                469.114990234375,
+                147.0823516845703,
+                712.806884765625,
+                469.2705078125
+            ]
+        },
+        {
+            "id": 3,
+            "clsss": "dog",
+            "confidence": 0.9225190877914429,
+            "bbox": [
+                321.2333679199219,
+                14.407610893249512,
+                494.8878173828125,
+                432.1535339355469
+            ]
+        },
+        {
+            "id": 4,
+            "clsss": "dog",
+            "confidence": 0.84836745262146,
+            "bbox": [
+                103.31580352783203,
+                127.26292419433594,
+                320.7608337402344,
+                426.1698303222656
+            ]
+        },
+        {
+            "id": 5,
+            "clsss": "dog",
+            "confidence": 0.8340618014335632,
+            "bbox": [
+                0.1888042688369751,
+                76.46073150634766,
+                137.1780548095703,
+                429.5969543457031
+            ]
+        }
+    ],
+    "info": {
+        "path": "C:\\Users\\alcheraa\\Desktop\\연습\\self\\my_git\\auto-labeling\\sample_data\\sample_20.jpg",
+        "width": 514,
+        "height": 850,
+        "class_list": {
+            "0": "person",
+            "1": "bicycle",
+            "2": "car",
+            "3": "motorcycle",
+            "4": "airplane",
+            "5": "bus",
+            "6": "train",
+            "7": "truck",
+            "8": "boat",
+            "9": "traffic light",
+            "10": "fire hydrant",
+            "11": "stop sign",
+            "12": "parking meter",
+            "13": "bench",
+            "14": "bird",
+            "15": "cat",
+            "16": "dog",
+            "17": "horse",
+            "18": "sheep",
+            "19": "cow",
+            "20": "elephant",
+            "21": "bear",
+            "22": "zebra",
+            "23": "giraffe",
+            "24": "backpack",
+            "25": "umbrella",
+            "26": "handbag",
+            "27": "tie",
+            "28": "suitcase",
+            "29": "frisbee",
+            "30": "skis",
+            "31": "snowboard",
+            "32": "sports ball",
+            "33": "kite",
+            "34": "baseball bat",
+            "35": "baseball glove",
+            "36": "skateboard",
+            "37": "surfboard",
+            "38": "tennis racket",
+            "39": "bottle",
+            "40": "wine glass",
+            "41": "cup",
+            "42": "fork",
+            "43": "knife",
+            "44": "spoon",
+            "45": "bowl",
+            "46": "banana",
+            "47": "apple",
+            "48": "sandwich",
+            "49": "orange",
+            "50": "broccoli",
+            "51": "carrot",
+            "52": "hot dog",
+            "53": "pizza",
+            "54": "donut",
+            "55": "cake",
+            "56": "chair",
+            "57": "couch",
+            "58": "potted plant",
+            "59": "bed",
+            "60": "dining table",
+            "61": "toilet",
+            "62": "tv",
+            "63": "laptop",
+            "64": "mouse",
+            "65": "remote",
+            "66": "keyboard",
+            "67": "cell phone",
+            "68": "microwave",
+            "69": "oven",
+            "70": "toaster",
+            "71": "sink",
+            "72": "refrigerator",
+            "73": "book",
+            "74": "clock",
+            "75": "vase",
+            "76": "scissors",
+            "77": "teddy bear",
+            "78": "hair drier",
+            "79": "toothbrush"
+        }
+    }
+}

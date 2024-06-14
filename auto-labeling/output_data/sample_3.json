@@ -1,0 +1,157 @@
+{
+    "objects": [
+        {
+            "id": 1,
+            "clsss": "person",
+            "confidence": 0.9256038665771484,
+            "bbox": [
+                557.5476684570312,
+                112.30033111572266,
+                753.2943115234375,
+                583.8217163085938
+            ]
+        },
+        {
+            "id": 2,
+            "clsss": "person",
+            "confidence": 0.630662202835083,
+            "bbox": [
+                1014.6929931640625,
+                388.8730163574219,
+                1031.026123046875,
+                431.7920837402344
+            ]
+        },
+        {
+            "id": 3,
+            "clsss": "dog",
+            "confidence": 0.6137195825576782,
+            "bbox": [
+                182.884765625,
+                381.262939453125,
+                438.5263977050781,
+                651.482421875
+            ]
+        },
+        {
+            "id": 4,
+            "clsss": "horse",
+            "confidence": 0.5675995945930481,
+            "bbox": [
+                182.89404296875,
+                381.35845947265625,
+                437.8160095214844,
+                651.4556884765625
+            ]
+        },
+        {
+            "id": 5,
+            "clsss": "person",
+            "confidence": 0.4433060586452484,
+            "bbox": [
+                368.8731689453125,
+                369.15509033203125,
+                407.4527893066406,
+                439.6793212890625
+            ]
+        },
+        {
+            "id": 6,
+            "clsss": "bench",
+            "confidence": 0.26792916655540466,
+            "bbox": [
+                0.11105529218912125,
+                437.9974670410156,
+                38.489112854003906,
+                462.8756103515625
+            ]
+        }
+    ],
+    "info": {
+        "path": "C:\\Users\\alcheraa\\Desktop\\연습\\self\\my_git\\auto-labeling\\sample_data\\sample_3.jpg",
+        "width": 652,
+        "height": 1086,
+        "class_list": {
+            "0": "person",
+            "1": "bicycle",
+            "2": "car",
+            "3": "motorcycle",
+            "4": "airplane",
+            "5": "bus",
+            "6": "train",
+            "7": "truck",
+            "8": "boat",
+            "9": "traffic light",
+            "10": "fire hydrant",
+            "11": "stop sign",
+            "12": "parking meter",
+            "13": "bench",
+            "14": "bird",
+            "15": "cat",
+            "16": "dog",
+            "17": "horse",
+            "18": "sheep",
+            "19": "cow",
+            "20": "elephant",
+            "21": "bear",
+            "22": "zebra",
+            "23": "giraffe",
+            "24": "backpack",
+            "25": "umbrella",
+            "26": "handbag",
+            "27": "tie",
+            "28": "suitcase",
+            "29": "frisbee",
+            "30": "skis",
+            "31": "snowboard",
+            "32": "sports ball",
+            "33": "kite",
+            "34": "baseball bat",
+            "35": "baseball glove",
+            "36": "skateboard",
+            "37": "surfboard",
+            "38": "tennis racket",
+            "39": "bottle",
+            "40": "wine glass",
+            "41": "cup",
+            "42": "fork",
+            "43": "knife",
+            "44": "spoon",
+            "45": "bowl",
+            "46": "banana",
+            "47": "apple",
+            "48": "sandwich",
+            "49": "orange",
+            "50": "broccoli",
+            "51": "carrot",
+            "52": "hot dog",
+            "53": "pizza",
+            "54": "donut",
+            "55": "cake",
+            "56": "chair",
+            "57": "couch",
+            "58": "potted plant",
+            "59": "bed",
+            "60": "dining table",
+            "61": "toilet",
+            "62": "tv",
+            "63": "laptop",
+            "64": "mouse",
+            "65": "remote",
+            "66": "keyboard",
+            "67": "cell phone",
+            "68": "microwave",
+            "69": "oven",
+            "70": "toaster",
+            "71": "sink",
+            "72": "refrigerator",
+            "73": "book",
+            "74": "clock",
+            "75": "vase",
+            "76": "scissors",
+            "77": "teddy bear",
+            "78": "hair drier",
+            "79": "toothbrush"
+        }
+    }
+}
