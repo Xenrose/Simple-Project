@@ -33,11 +33,11 @@ def stock_preprocessing(stock_data, split_date='2023-08-01', window_size=7, futu
 
     for i in range(window_size, train_size-future_step +1):
         X_seq_train.append(X_train[i - window_size:i])
-        y_seq_train.append(y_train[i + future_step - 1:i + future_step])
+        y_seq_train.append(y_train[i + future_step - 1])
 
     for i in range(window_size, test_size-future_step +1):
         X_seq_test.append(X_test[i - window_size:i])
-        y_seq_test.append(y_test[i + future_step - 1:i + future_step])
+        y_seq_test.append(y_test[i + future_step - 1])
 
 
     stock = {"X_train": np.array(X_seq_train),

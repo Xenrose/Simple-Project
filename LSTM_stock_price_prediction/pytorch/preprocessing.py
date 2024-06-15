@@ -54,7 +54,7 @@ class StockData(Dataset):
         for i in range(window_size, _size-future_step +1):
             X_stock_seq.append(X_stock[i - window_size:i])
             X_index_seq.append(X_index[i - window_size:i])
-            y_seq.append(y[i + future_step - 1:i + future_step])
+            y_seq.append(y[i + future_step - 1])
 
         self.X_stock = np.array(X_stock_seq)
         self.X_index = np.array(X_index_seq)
