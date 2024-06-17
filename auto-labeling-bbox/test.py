@@ -4,10 +4,10 @@ import json, sys, os
 
 
 try:
-    from ultralytics import YOLO
+    from ultralytics import YOLOv10
 except:
     os.system('pip install -r requirements.txt')
-    from ultralytics import YOLO
+    from ultralytics import YOLOv10
 
 
 
@@ -47,7 +47,8 @@ if __name__ == "__main__":
     if not os.path.isdir(output_path):
         os.mkdir(output_path)
 
-    model = YOLO('model.safetensors', task='detect') # yolo v10n
+    # model = YOLO('model.safetensors', task='detect') # yolo v10n
+    model = YOLOv10.from_pretrained('jameslahm/yolov10b')
     results = model(input_path)  
 
     for result in results:
